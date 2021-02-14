@@ -1,0 +1,1 @@
+Working through the "Effective JavaScript" Book, Authorer by David Herman.
