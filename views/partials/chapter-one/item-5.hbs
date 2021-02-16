@@ -1,0 +1,21 @@
+<h2>Item 5: Avoid using == with Mixed Types</h2>
+<p>The == operator applies a confusing set of implicit coercions when its arguements are different types</p>
+<p>Best practice is to convert values to explicitly convert values to the same type and then use the <strong>strict
+        equality (===)</strong> operator</p>
+<p> Unary operator + can be used to convert values to numbers => var formMonth = "10"; typeof +formMonth; // Number</p>
+<p>View console:</p>
+<script>
+    var formMonth = "2";
+    var formDay = "16";
+
+    var today = new Date();
+
+    if (+formMonth === (today.getMonth() + 1) && +formDay === today.getDate()) {
+        console.log('The dates match!')
+    } else {
+        console.log('The dates dont match')
+    }
+
+    var formMonth = "10";
+    console.log(typeof +formMonth); // Number
+</script>

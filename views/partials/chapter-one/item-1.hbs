@@ -1,0 +1,25 @@
+<h2>Item 1: Know Which JavaScript You Are Using</h2>
+<p>Use Strict - open console for examples</p>
+<script>
+    // Provide code in IIFE so scope is independantly interpretted. 
+    (function () {
+        function f() {
+            "use strict"
+            var arguments = [];
+        }
+    })
+
+        (function () {
+            function f() {
+                var arguments = [];
+            }
+        })
+</script>
+<ul>
+    <li>
+        Write code in strict mode and with IIFE
+    </li>
+    <li>
+        This will ensure the code is always treated the same, whether in strict mode or concatenated with other files
+    </li>
+</ul>

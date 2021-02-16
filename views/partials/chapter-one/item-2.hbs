@@ -1,0 +1,58 @@
+<h2>Item 2: Understand JavaScript's Floating-Point Numbers</h2>
+
+<p>Open console to check floating point numbers (all numbers in JS are doubles)</p>
+<script>
+    console.log(`type of 21 ${typeof 21}`);
+    console.log(`type of 12.7 ${typeof 12.7}`)
+    console.log(`type of -2 ${typeof -2}`)
+</script>
+
+<p>Bitwise arithmetic operators ($ | ^ ~ <<>> >>>) convert doubles to ints, do the calculation and then convert the
+        results back to doubles.</p>
+<p>Bitwise operators explained - https://www.youtube.com/watch?v=mesu75PTDC8</p>
+<p>Bitwise operators not commonly used. An example of it being used is for Read, Write, Execute permissions</p>
+<p>Read, Write, Execute</p>
+<p>// 00000100</p>
+<p>// 00000110</p>
+<p>// 00000111</p>
+<p> Bitwise OR operator you can add permissions, with the bitwise AND operator you can check permissions</p>
+<script>
+    console.log(`// 1 = 00000001`);
+    console.log(`// 2 = 00000010`);
+    console.log(`bitwise OR will compare each bit one at a time, if a bit is 1 it will return 1, if neither is 1 it will return 0`);
+    console.log(`bitwise OR | - single pipe - 1|2 = ${1 | 2}`);
+    console.log(`// 3 = 00000011 3 is the results as the last two bits compared return 1`);
+
+    console.log(`bitwise AND will compare each bit one at a time, if both bits are 1 it will return 1, if one bit is 0, it will return 0`);
+    console.log(`bitwise AND & - single ampersand - 1 & 2 = ${1 & 2}`);
+    console.log(`// 0 = 00000000 0 is the results as the last two bits compared return 0`);
+
+
+    console.log(`// Permissions with Bitwise Operators`);
+    const readPermission = 4;    // 00000100
+    const writePermission = 2;   // 00000010
+    const executePermission = 1; // 00000001
+
+    let myPermission = 0;
+
+    // Update my permission with readPermission and writePermission
+    myPermission = myPermission | readPermission | writePermission;
+    console.log(`my permission = ${myPermission}`);
+
+    // Check if user has readPermssions
+    let message = (myPermission & readPermission) ? 'has read permission' : 'does not have read permission';
+    console.log(message);
+
+
+</script>
+
+<p>Converting a number to string to see it's bits</p>
+<script>
+    console.log(`8 to string ${(8).toString(2)}`);
+</script>
+
+<p>Floating point numbers have limitations in their precision, for example:</p>
+<p>0.1 + 0.2; // 0.30000000000000004</p>
+<script>
+    console.log(0.1 + 0.2);
+</script>

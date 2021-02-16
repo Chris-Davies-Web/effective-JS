@@ -1,0 +1,24 @@
+<h2>Item 4: Prefer Primitives to Object Wrappers</h2>
+<p>JS has 5 types of primitive values</p>
+<ol>
+    <li>booleans</li>
+    <li>numbers</li>
+    <li>strings</li>
+    <li>null</li>
+    <li>undefined</li>
+</ol>
+<p>Use primitive types over object wrappers as you can't compare two distinct String objects with the same values</p>
+<script>
+    var s1 = new String("hello");
+    var s2 = new String("hello");
+    console.log(s1 === s2)
+</script>
+<p>Confusingly the typeof operator reports null as 'object' but the ECMAScript standard describes it as a distinct type
+</p>
+<script>
+    console.log(typeof "string");
+    console.log(typeof 1)
+    console.log(typeof true)
+    console.log(typeof null)
+    console.log(typeof undefined)
+</script>

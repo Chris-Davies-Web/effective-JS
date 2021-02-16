@@ -1,0 +1,69 @@
+<h2>Item 3: Beware of Implicit Coercions</h2>
+<p>Javascript <strong>coerces</strong> a value to the expected type by automatically converting them</p>
+<p>Arithmetic operators (-, +, /, *, %) all attempt to convert their arguements to numbers before the calculation.</p>
+<p>The exception is the + operator when it tries to convert a string and a number</p>
+<script>
+    console.log(`"1" + 1 = ${"1" + 1}`);
+    console.log(`1 + 2 + "3" = ${1 + 2 + "3"}`);
+    console.log(`1 + "2" + 3 = ${1 + "2" + 3}`);
+</script>
+
+<p>NaN - "not a number" is a floating point value (so it is a paradoxically a number!)</p>
+<p>NaN can be confusing</p>
+<ul>
+    <li>
+        It cannot be treated as an equal to itself (var x = NaN; x === NaN; // false)
+        <script>
+            var x = NaN;
+            console.log(x === NaN)
+        </script>
+
+    </li>
+    <li>
+        the isNaN converts it's arguement to a number before testing it's value
+        <script>
+            console.log(isNaN(NaN));
+            console.log(isNaN("foo"));
+            console.log(isNaN({}));
+            console.log(isNaN({ valueOf: "foo" }));
+
+        </script>
+
+    </li>
+    <li>
+        The answer = as NaN is the only JS value that is treated as an unequal to itself, you can always test if a value
+        is NaN by checking if for equality to itself.
+        <script>
+            var a = NaN;
+            console.log(a !== a);
+
+            var b = "foo";
+            console.log(b !== b);
+
+            var c = undefined;
+            console.log(c !== c);
+
+            var d = {};
+            console.log(d !== d);
+
+            var e = { valueOf: "foo" };
+            console.log(e !== e);
+
+        </script>
+    </li>
+    <li>
+        This pattern can be used as a clearly named utility function
+        <code>
+            function isReallyNaN(x){
+                return x !== x;
+            }
+        </code>
+    </li>
+</ul>
+
+<p> 'Truthiness' coercion.</p>
+<p> Most JS values are truthy</p>
+<p> There are 7 false: 0, false, null, undefined, -0, "", NaN</p>
+<p> To test truthiness best to compare to 'undefined'</p>
+<p>typeof x === "undefined"</p>
+<p>x === undefined</p>
