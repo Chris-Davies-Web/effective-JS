@@ -1,0 +1,35 @@
+<h2>Item 11: Get comfortable with Closures</h2>
+<p>Functions that keep track of variables from their containing scopes are called closures</p>
+<p>Closures can outlive the functions that create them</p>
+<p>Closure internally store references to their outer variables, and can both read and update their stored variables</p>
+
+<script>
+    // closure 1
+    function sandwichMaker(magicIngredient) {
+        return function make(filling) {
+            return magicIngredient + " and " + filling;
+        }
+    }
+    var baguette = sandwichMaker('baguette');
+    console.log(baguette('ham'))
+    console.log(baguette('cheese'))
+    var toast = sandwichMaker('toast')
+    console.log(toast('marmite'))
+    console.log(toast('peanutbutter'))
+
+    // closure 2
+    function box() {
+        var val = undefined;
+        return {
+            set: function (newVal) { val = newVal; },
+            get: function () { return val; },
+            type: function () { return typeof val; }
+        }
+    }
+
+    var b = box();
+    console.log(b.type())
+    console.log(b.set(97.2))
+    console.log(b.get())
+    console.log(b.type())
+</script>

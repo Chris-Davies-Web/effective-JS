@@ -1,0 +1,10 @@
+<h2>Item 7: Think of Strings As Sequences og 16-Bit COde Units</h2>
+<ul>
+    <li>JS strings consist of 16-bit code units, not Unicode code points</li>
+    <li>Unicode code points 2<sup>16</sup> and above are represented in JS by two code units, known as a surrogate pair
+    </li>
+    <li>Surrogate pairs throw off string element counts, affecting 'length', 'charAt', 'charCodeAt' and regex patterns
+        such as ".".</li>
+    <li>Use 3rd party libraries for writing code point-aware string manipulation</li>
+    <li>WHener using String libraries, consult the docs to see if it handles the full range of code points</li>
+</ul>

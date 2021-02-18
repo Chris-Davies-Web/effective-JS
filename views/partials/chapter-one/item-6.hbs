@@ -1,0 +1,32 @@
+<h2>Item 6: Learn the limits of Semicolon Insertion</h2>
+<p>JS lets you leave off semi-colons due to 'automatic semicolon insertion' (ASI) which infers omitted semicolons</p>
+<p>The ASI rules are:</p>
+
+<p>1. Semicolons are only ever inserted before:</p>
+<ul>
+    <li>a } token</li>
+    <li>after one or more new lines</li>
+    <li>at the end of program output</li>
+</ul>
+
+<p>2. Semicolons are only ever inserted when the next token cannot be parsed, watch out for the following tokens</p>
+<ul>
+    <li>(</li>
+    <li>[</li>
+    <li>+</li>
+    <li>-</li>
+    <li>/</li>
+</ul>
+<p>Without a ; any line starting with the above tokens will be parsed on the same line as the line above them. Causing
+    errors.</p>
+
+<p>
+    Prefix statements with a ; will avoid many issues
+</p>
+<p>
+    a = b // semicolon inferred<br />
+    var x // semicolon inferred<br />
+    ;(f()) // semicolon inferred<br />
+</p>
+
+<p>3. Semicolons are never inserted as separators in the head of a for loop or an empty statements</p>
