@@ -1,0 +1,50 @@
+<h2>Item 18: Understanding the DIfference betweeen Function, Method, and Constructor calls</h2>
+<p>1. Function</p>
+<script>
+    function hello(username) {
+        return "hello " + username;
+    }
+    console.log(hello("Chris"))
+</script>
+
+<p>2. Method</p>
+<p>Object properties that happen to be functions</p>
+<script>
+    var obj = {
+        hello: function () {
+            return "hello " + this.username;
+        },
+        username: "Jess"
+    }
+    console.log(obj.hello());
+
+    // The this in the hello function is specific to the object it is called from
+    var obj2 = {
+        hello: obj.hello,
+        username: "Nero"
+    }
+    console.log(obj2.hello());
+</script>
+
+<p>A function that uses 'this' is not particularly useful as a function, rather than a method. As the method is an
+    object property, the 'this' will refer to the object, whereas a nonmethod call will refer to the global 'this'. </p>
+<p>Strict mode changes the default binding of the 'this' in a nonmethod function to 'undefined'</p>
+<script>
+    function hello() {
+        'use strict'
+        return "hello " + this.username;
+    }
+    hello()
+</script>
+
+<p>3. Constructors</p>
+<p>Constructors primary role is to initialise a new object.</p>
+<p>A new object is passed into the function as the 'this'</p>
+<script>
+    function User(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    var user1 = new User("Chris", 34);
+    console.log(user1)
+</script>

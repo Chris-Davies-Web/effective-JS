@@ -1,1 +1,21 @@
 <h2>Item 15: Beware of Unportable Scoping of Block-Local Function Declarations</h2>
+<script>
+    function f() { return "global"; }
+
+    function test(x) {
+        var result = [];
+        if (x) {
+            function f() { return "local"; } // blocl-local
+            result.push(f());
+        }
+        result.push(f());
+        return result;
+    }
+
+    console.log(test(true))
+    console.log(test(false))
+</script>
+
+<p>Always keep function delcarations at the outermost level of a program or a containing function to avoid unportable
+    behaviour</p>
+<p>Use var declarations with conditional assignmentrs instead of conditional function declarations</p>

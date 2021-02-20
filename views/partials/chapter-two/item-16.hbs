@@ -1,1 +1,24 @@
 <h2>Item 16: Avoid Creating Local Variables with 'eval'</h2>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval#never_use_eval!">NEVER
+    USE EVAL</a>
+<p>With great power comes great responsibility</p>
+<p>eval have access to the full scope from where it is called</p>
+<p>Indirect eval is calling the eval function as below:</p>
+<script>
+    var x = "global";
+    function test() {
+        var x = "local";
+        return eval("x");
+    }
+    console.log('inderect eval ', test())
+</script>
+<p>IDirect eval is assigning eval to a var and then calling it, as below:</p>
+<script>
+    var a = "global";
+    function directTest() {
+        var a = "local";
+        var f = eval;
+        return f("a");
+    }
+    console.log('inderect eval ', directTest())
+</script>

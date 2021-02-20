@@ -1,1 +1,6 @@
 <h2>Item 14: Beware of Unportable Scoping of Names Function Expressions</h2>
+<p>Named functions improve stack traces in Error Objects and debuggers</p>
+<script>
+    var f = function g() { return 17; }
+    // issue is g() returns 17 as there should only be one binding to memory for this function (f)
+</script>

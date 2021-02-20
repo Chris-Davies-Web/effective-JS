@@ -1,0 +1,36 @@
+<h2>Item 19: Get Comfortable Using Higher Order Functions</h2>
+<p> Higher order functions are functions which take a function as a parameter or return a function.</p>
+<p>For example, callbacks.</p>
+<p>Looks to create higher order functions when there is repeated functionality in functions.</p>
+<p>For example, a function which loops and concatenates a string:</p>
+<script>
+    function buildString(n, callback) {
+        var result = "";
+        for (var i = 0; i < n; i++) {
+            result += callback(i);
+        }
+        return result;
+    }
+
+    // get charcode of "a"
+    var aIndex = "a".charCodeAt(0);
+
+    // loop through charcodes from a, 26 times
+    var alphabet = buildString(26, function (i) {
+        return String.fromCharCode(aIndex + i);
+    })
+
+    // loop through digits 1-10
+    var digits = buildString(10, function (i) {
+        return i;
+    })
+
+    // Random string
+    var random = buildString(8, function () {
+        return String.fromCharCode(Math.floor(Math.random() * 26) + aIndex);
+    })
+
+    console.log(alphabet);
+    console.log(digits);
+    console.log(random);
+</script>

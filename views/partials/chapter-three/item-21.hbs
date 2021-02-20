@@ -1,0 +1,28 @@
+<h2>Item 21: Use apply to call Function with Different Numbers of Arguements</h2>
+<p>'Arity' of a function is the number of arguments it expects</p>
+<p>Fixed-arity means the function will take a fixed amount of arguments</p>
+<p>Variable-arity means the function will take any number of arguments</p>
+<p>Variable-arity = variadic function</p>
+<p>Use the 'apply' method to call variadic functions with a computed (variable) array of arguments.</p>
+<p>Like the call method, the first arguments in the apply method is a custom receiver</p>
+<script>
+    function getAllScores() {
+        var numberOfScores = Math.floor(Math.random() * 10000000);
+        return ("" + numberOfScores).split("");
+    }
+
+    function getAverage() {
+        var total = 0;
+        for (var i = 0; i < arguments.length; i++) {
+            total += arguments[i];
+        }
+
+        return total / arguments.length;
+    }
+
+    console.log(getAverage(1, 2, 10));
+    var scores = getAllScores();
+
+    // Apply will add each element in the array as a separate parameter into the getAverage function
+    console.log(getAverage.apply(null, scores))
+</script>

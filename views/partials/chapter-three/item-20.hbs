@@ -1,0 +1,16 @@
+<h2>Item 20: Use call to Call Methods with a Custom Receiver</h2>
+<p>Calling the 'call' method on a function object allows you to pass an object for the 'this' object</p>
+<p>'reciever' is the value bound to the 'this' keywork</p>
+<p>The 'call' method allows you to pass a custom reciever</p>
+<script>
+    function printName(first, last) {
+        console.log(first, last);
+        console.log(this);
+    }
+
+    printName('Chris ', 'Davies');
+    printName.call({
+        hair: "brown",
+        face: "lovely"
+    }, 'Jessica ', 'Levy')
+</script>

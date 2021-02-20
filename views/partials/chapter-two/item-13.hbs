@@ -1,1 +1,27 @@
 <h2>Item 13: Use Immediately Invoked Function Expressions to Create Local Scopes</h2>
+<p>Workaround for block scoping</p>
+<script>
+
+    // Returning Closures that can access array elements
+    function wrapElements(a) {
+        var result = [];
+        for (i = 0, n = a.length; i < n; i++) {
+            (function () {
+                var j = i;
+                result[i] = function () { return a[j]; };
+            })()
+
+        }
+        return result;
+    }
+    var wrapped = wrapElements([10, 20, 30, 40, 50]);
+    var f = wrapped[2];
+    console.log(f())
+    f();
+</script>
+<p>Understand the difference between binding and assignment</p>
+<ol>
+    <li>Entering a scope at runtime allocates a "slot" in memory for each variable binding in that scope</li>
+    <li>These bindings can be assigned different values as a variable is assigned new values, but the binding stays the
+        same</li>
+</ol>
