@@ -1,1 +1,23 @@
 <h2>Item 23: Never Modificy the arguements object</h2>
+<p>The relationship between the 'arguments' object and the named parameters of a function is extremely brittle.</p>
+<p>Functions in strict mode do NOT alias with their arguments object - see example</p>
+<script>
+    function strict(x) {
+        'use strict'
+        arguments[0] = 'modified';
+        return x === arguments[0];
+    }
+
+    function notstrict(x) {
+        arguments[0] = 'modified';
+        return x === arguments[0];
+    }
+
+    console.log(strict('unmodified'));
+    console.log(notstrict('unmodified'))
+</script>
+<p>Safer to NEVER modify the arguments object - this is easy to do by copying it's elements into a real array</p>
+<p>The slice method of an array makes a copy when called without additional arguments</p>
+<script>
+    var args = [].slice.call(arguments);
+</script>

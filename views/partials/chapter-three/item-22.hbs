@@ -1,1 +1,31 @@
 <h2>Item 22: Use arguements to Create Variadic Functions</h2>
+<p>Variadic functions make for flexible interfaces, different clients can call them with different numbers of arguments
+</p>
+<p>A good rule is if you provide a variable-arity function you should provide a fixed-arity function version that
+    explicitly takes an array.</p>
+<script>
+    function getAllScores() {
+        var numberOfScores = Math.floor(Math.random() * 10000000);
+        return ("" + numberOfScores).split("");
+    }
+
+    function getAverageOfArray(arr) {
+        var total = 0;
+        for (var i = 0; i < arr.length; i++) {
+            total += arr[i];
+        }
+
+        return total / arr.length;
+    }
+
+    function getAverage() {
+        return getAverageOfArray(arguments)
+    }
+
+
+    var scores = getAllScores();
+
+    // Apply will add each element in the array as a separate parameter into the getAverage function
+    console.log(getAverage(1, 2, 3))
+    console.log(getAverage.apply(null, scores))
+</script>
