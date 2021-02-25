@@ -1,1 +1,21 @@
-<h2>Item 26: Use bing to Curry Functions</h2>
+<h2>Item 26: Use bind to Curry Functions</h2>
+<p>The technique of binding a function to a subset of it's arguments is known as currying.</p>
+<script>
+    // Example of creating URLs
+    var paths = ["one", "two", "three", "four"];
+    var siteDomain = "chrisdaviesweb";
+    function simpleURL(protocal, domain, path) {
+        return protocal + '://' + domain + '/' + path;
+    }
+
+    var urls = paths.map(function (path) {
+        return simpleURL("http", siteDomain, path);
+    })
+
+    console.log(urls);
+
+    // This can be simplified to
+    // THis is using BIND to curry a function
+    var urls2 = paths.map(simpleURL.bind(null, "http", siteDomain));
+    console.log(urls2);
+</script>

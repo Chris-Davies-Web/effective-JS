@@ -1,1 +1,67 @@
 <h2>Item 25: Use bind to Extract Methods with a Fixed Receiver</h2>
+<p>Console.log</p>
+<script>
+    var buffer = {
+        entries: [],
+        add: function (s) {
+            this.entries.push(s)
+        },
+        concat: function () {
+            return this.entries.join("")
+        }
+    }
+
+    // Here the reciever of buffer.add is not buffer, it will be the global object so entries will be undefined
+    var source = ["867", "-", "5309"];
+    // source.forEach(buffer.add);
+
+    // You can add the reciever into the forEach as the second arg
+    source.forEach(buffer.add, buffer);
+    console.log('buffer added as reciever ', buffer.concat());
+</script>
+
+<p>Wrapper function example</p>
+<script>
+    // Or you could create a wrapper function
+    var buffer = {
+        entries: [],
+        add: function (s) {
+            this.entries.push(s)
+        },
+        concat: function () {
+            return this.entries.join("")
+        }
+    }
+    // Here the reciever of buffer.add is not buffer, it will be the global object so entries will be undefined
+    var source = ["867", "-", "5309"];
+    // source.forEach(buffer.add);
+
+    // You can add the reciever into the forEach as the second arg
+    source.forEach(function (s) {
+        buffer.add(s);
+    });
+    console.log('wrapper function ', buffer.concat());
+</script>
+
+<p>Bind function example, the bind function will bind a reciever to that function</p>
+<script>
+    // Or you could create a wrapper function
+    var buffer = {
+        entries: [],
+        add: function (s) {
+            this.entries.push(s)
+        },
+        concat: function () {
+            return this.entries.join("")
+        }
+    }
+    // Here the reciever of buffer.add is not buffer, it will be the global object so entries will be undefined
+    var source = ["867", "-", "5309"];
+    // source.forEach(buffer.add);
+
+    // You can add the reciever into the forEach as the second arg
+    source.forEach(buffer.add.bind(buffer));
+    console.log('bind function ', buffer.concat());
+</script>
+<p>Using 'bind' creates a new function, so</p>
+<p>buffer.add === buffer.add.bind(buffer) // false </p>
