@@ -1,1 +1,57 @@
 <h2>Item 36: Store Instance State Only on Instance Objects</h2>
+<p>Example below puts an children array on the prototype, when this array is pushed too from any Tree instance the array
+    on the prototype is updated. </p>
+<script>
+    function Tree(x) {
+        this.value = x;
+    }
+    Tree.prototype = {
+        children: [],
+        addChild: function (x) {
+            this.children.push(x)
+        }
+    }
+
+    var left = new Tree(2);
+    left.addChild(1);
+    left.addChild(3);
+
+    var right = new Tree(6);
+    right.addChild(5);
+    right.addChild(7);
+
+    var topa = new Tree(4);
+    topa.addChild(left);
+    topa.addChild(right);
+
+    console.log('topa.children', topa.children)
+
+</script>
+
+<p>The correct way is to separate the children array for each instance of the objects</p>
+<script>
+    function Tree(x) {
+        this.children = [];
+        this.value = x;
+    }
+    Tree.prototype = {
+        addChild: function (x) {
+            this.children.push(x)
+        }
+    }
+    var left = new Tree(2);
+    left.addChild(1);
+    left.addChild(3);
+
+    var right = new Tree(6);
+    right.addChild(5);
+    right.addChild(7);
+
+    var topa = new Tree(4);
+    topa.addChild(left);
+    topa.addChild(right);
+
+    console.log('topa.children', topa.children)
+
+
+</script>

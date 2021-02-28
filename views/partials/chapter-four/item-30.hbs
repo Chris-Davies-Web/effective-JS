@@ -1,1 +1,32 @@
 <h2>Item 30: Understand the difference between prototype, getPrototypeOf, and __proto__</h2>
+<p>Prototypes involves 3 separate accessors:</p>
+<ol>
+    <li>'C.prototype' is used to establish the prototype of objects created by new.C()</li>
+    <li>'Object.getPrototypeOf(obj)' is the standard ES5 mechanism for retieving obj's prototype</li>
+    <li>obj.__proto__ is a nonstandard mechanism for retrieving obj's prototype</li>
+</ol>
+
+<script>
+    function User(name, password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    // Number 1 on the list above - User.prototype used to establish the prototype of objects
+    User.prototype.toString = function () {
+        return "[User " + this.name + "]";
+    }
+
+    User.prototype.checkPassword = function (password) {
+        return password === this.password;
+    }
+
+    var u = new User('Chris', 'test');
+
+    // Number 2 on ths list
+    console.log(Object.getPrototypeOf(u) === User.prototype);
+
+
+    // Number 3 on ths list
+    console.log(u.__proto__ === User.prototype);
+</script>

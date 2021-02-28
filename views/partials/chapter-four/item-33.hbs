@@ -1,1 +1,59 @@
 <h2>Item 33: Make your Constructors new-Agnostic</h2>
+<p>If a caller forgets the 'new' keyword the reciever becomes the global object</p>
+<script>
+    function User(name, password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    // Number 1 on the list above - User.prototype used to establish the prototype of objects
+    User.prototype.toString = function () {
+        return "[User " + this.name + "]";
+    }
+
+    User.prototype.checkPassword = function (password) {
+        return password === this.password;
+    }
+
+    var u = User('Chris', 'test');
+    console.log("u ", u)
+    console.log("this.name ", this.name)
+    console.log("this.password ", this.password)
+</script>
+<p>A more robust approach us to provide a function the works as a constructor no matter how it is called</p>
+<script>
+    // This is one way, but there is a better way
+    function User(name, password) {
+        if (!(this instanceof User)) {
+            return new User(name, password);
+        }
+        this.name = name;
+        this.password = password;
+    }
+
+    var x = User('Pete', 'pwsd');
+    var y = new User('Dave', 'ppp')
+
+    console.log('x instanceof User ', x instanceof User);
+    console.log('y instanceof User ', y instanceof User);
+
+
+    // This is the better way 
+    function User2(name, password) {
+        var self = this instanceof User2 ? this : Object.create(User2.prototype);
+        self.name = name;
+        self.password = password;
+
+        return self;
+    }
+
+
+    var xz = User2('Pete', 'pwsd');
+    var yz = new User2('Dave', 'ppp');
+
+    console.log('xz instanceof User2 ', xz instanceof Object);
+    console.log('yz instanceof User2 ', yz instanceof User2);
+</script>
+<p>Object create takes a prototype object and returns a new object that inherits from it</p>
+<p>Make a constructor agnostic to it's calling syntax by reinboking itself the the new or with Object.create</p>
+<p>Document clearly when a function expects to be called with new</p>

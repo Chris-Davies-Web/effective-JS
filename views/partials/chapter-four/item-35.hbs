@@ -1,1 +1,24 @@
 <h2>Item 35: Use Closures to Store Private Data</h2>
+<p>Closures are an austere (strict) data structure. They store data in their enclosed variables without providing direct
+    access to those variables.</p>
+<p>We can take advantage of this by storing truly private data in an object</p>
+<script>
+    // toString and checkPassword don't refer to 'this' 
+    // name and password are stored in closure scopes and can't be changed from outside the User instance
+    function User(name, password) {
+        this.toString = function () {
+            return "[User " + name + "]";
+        }
+        this.checkPassword = function (password) {
+            return password === password;
+        }
+    }
+
+    var u = new User('Chris', 'test');
+
+    console.log(u.toString());
+    console.log(u);
+    console.log(u.name); // undefined
+
+
+</script>
